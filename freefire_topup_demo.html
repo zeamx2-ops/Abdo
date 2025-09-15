@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>تجريبي - شحن جواهر Free Fire</title>
+  <style>
+    :root{
+      --bg1:#071224;
+      --bg2:#0b3b4a;
+      --card:#0f2630;
+      --accent:#00e6b8;
+      --glass: rgba(255,255,255,0.06);
+      --muted: #bcd;
+      --danger: #ff7a7a;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: "Segoe UI", Tahoma, Arial, "Noto Naskh Arabic", sans-serif;
+      background: linear-gradient(135deg, var(--bg1), var(--bg2));
+      color:#eafaf4;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:24px;
+    }
+    .card{
+      width: 420px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.03), rgba(255,255,255,0.02));
+      border-radius:14px;
+      padding:20px;
+      box-shadow: 0 8px 30px rgba(2,10,12,0.6);
+      border: 1px solid rgba(255,255,255,0.04);
+    }
+    header{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+    .logo{
+      width:56px;height:56px;border-radius:10px;background:linear-gradient(135deg,#ffcc00,#ff5c00);
+      display:flex;align-items:center;justify-content:center;font-weight:800;color:#07201a;
+      box-shadow: 0 6px 18px rgba(255,92,0,0.12);
+    }
+    h1{font-size:18px;margin:0}
+    p.lead{margin:6px 0 0;font-size:13px;color:var(--muted)}
+    form{margin-top:12px;display:grid;gap:10px}
+    label{font-size:12px;color:var(--muted)}
+    input, select{
+      width:100%;padding:10px;border-radius:8px;border:none;background:var(--glass);color:inherit;
+      outline: none;font-size:14px;
+    }
+    .row{display:flex;gap:8px}
+    .row > *{flex:1}
+    .btn{
+      display:inline-block;padding:11px 14px;border-radius:10px;border:none;background:linear-gradient(90deg,var(--accent),#00b589);
+      color:#07201a;font-weight:700;cursor:pointer;font-size:14px;
+      box-shadow: 0 8px 18px rgba(0,200,140,0.12);
+    }
+    .btn:active{transform:translateY(1px)}
+    .note{font-size:12px;color:#9fc7be;margin-top:8px;text-align:center}
+    .success{
+      display:none;
+      margin-top:12px;
+      padding:12px;border-radius:8px;background:linear-gradient(90deg,#052f28,#073a35);
+      color:var(--accent);font-weight:700;text-align:center;
+    }
+    .footer{margin-top:14px;font-size:12px;color:#9fbfb6;text-align:center}
+    .small{font-size:11px;color:#98b7b0}
+    /* modal */
+    .modal-backdrop{position:fixed;inset:0;background:rgba(2,8,10,0.6);display:none;align-items:center;justify-content:center}
+    .modal{background:#071a1b;padding:18px;border-radius:12px;max-width:420px;width:92%;box-shadow:0 12px 40px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.03)}
+    .modal h3{margin:0 0 8px;font-size:16px}
+    .modal p{margin:0 0 12px;color:var(--muted);font-size:14px}
+    .close{display:inline-block;padding:8px 12px;border-radius:8px;background:var(--accent);color:#07201a;font-weight:700;cursor:pointer;border:none}
+    footer.legal{margin-top:10px;font-size:11px;color:#8fa69f}
+    @media (max-width:480px){
+      .card{width:100%}
+    }
+  </style>
+</head>
+<body>
+  <div class="card" role="region" aria-label="نموذج شحن جواهر تجريبي">
+    <header>
+      <div class="logo">GF</div>
+      <div>
+        <h1>شحن جواهر - نموذج تجريبي</h1>
+        <p class="lead">واجهة تعليمية فقط — لا ترسل بيانات حقيقية.</p>
+      </div>
+    </header>
+
+    <form id="topupForm" autocomplete="off" novalidate>
+      <div>
+        <label for="email">الإيميل (اختياري للتجربة)</label>
+        <input id="email" name="email" type="email" placeholder="name@example.com" />
+      </div>
+
+      <div>
+        <label for="password">كلمة السر (اختبار فقط)</label>
+        <input id="password" name="password" type="password" placeholder="••••••••" />
+      </div>
+
+      <div class="row">
+        <div>
+          <label for="playerId">ID اللاعب</label>
+          <input id="playerId" name="playerId" type="text" placeholder="مثال: 123456789" required />
+        </div>
+        <div>
+          <label for="phone">رقم الهاتف (اختياري)</label>
+          <input id="phone" name="phone" type="tel" placeholder="+213 6XXXXXXXX" />
+        </div>
+      </div>
+
+      <div>
+        <label for="package">اختر باقة الجواهر</label>
+        <select id="package" name="package" required>
+          <option value="">-- اختر الباقة --</option>
+          <option value="100">100 جوهرة — تجربة</option>
+          <option value="500">500 جوهرة — شائع</option>
+          <option value="1000">1000 جوهرة — قيمة أفضل</option>
+          <option value="2000">2000 جوهرة — عرض خاص</option>
+        </select>
+      </div>
+
+      <div class="row">
+        <button type="button" class="btn" id="simulateBtn">محاكاة الشحن</button>
+        <button type="reset" class="btn" style="background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted)">إعادة</button>
+      </div>
+
+      <div class="success" id="successBox" role="status" aria-live="polite">
+        ✅ تم تنفيذ المحاكاة — تم شحن الباقة بنجاح (تجريبي)
+      </div>
+
+      <p class="note">هذا نموذج تعليمي: لا يقوم بإرسال أي معلومات للخارج. مناسب للاختبار المحلي أو رفعه على بيئة اختبارية خاصة بك.</p>
+    </form>
+
+    <div class="footer">
+      <div class="small">البيانات تُعالج فقط على جهازك — لا يوجد تسجيل على الخادم.</div>
+      <div class="small" style="margin-top:6px">جرب فتح الملف محليًا: افتح الملف في المتصفح (double-click).</div>
+    </div>
+  </div>
+
+  <!-- modal -->
+  <div class="modal-backdrop" id="backdrop" role="dialog" aria-hidden="true">
+    <div class="modal" role="document" aria-labelledby="mTitle">
+      <h3 id="mTitle">تفاصيل المحاكاة</h3>
+      <p id="mBody"></p>
+      <div style="text-align:center">
+        <button class="close" id="closeModal">حسناً</button>
+      </div>
+      <div class="legal">⚠️ تذكير: الملف لغرض تعليمي فقط.</div>
+    </div>
+  </div>
+
+  <script>
+    // Strictly client-side. No network calls.
+    const simulateBtn = document.getElementById('simulateBtn');
+    const form = document.getElementById('topupForm');
+    const successBox = document.getElementById('successBox');
+    const backdrop = document.getElementById('backdrop');
+    const mBody = document.getElementById('mBody');
+    const closeModal = document.getElementById('closeModal');
+
+    function validateForm() {
+      const playerId = document.getElementById('playerId').value.trim();
+      const pack = document.getElementById('package').value;
+      if (!playerId) {
+        alert('أدخل ID اللاعب قبل المحاكاة.');
+        return false;
+      }
+      if (!pack) {
+        alert('اختر باقة من القائمة.');
+        return false;
+      }
+      return true;
+    }
+
+    simulateBtn.addEventListener('click', () => {
+      if (!validateForm()) return;
+      // Gather visible data (only for display in modal) - do not send anywhere.
+      const email = document.getElementById('email').value || '—';
+      const playerId = document.getElementById('playerId').value;
+      const phone = document.getElementById('phone').value || '—';
+      const pack = document.getElementById('package').value;
+
+      // Compose a plausible confirmation message
+      mBody.textContent = `إيميل: ${email} · ID: ${playerId} · هاتف: ${phone} · باقة: ${pack} جواهر.
+(محاكاة محلية فقط — لا يتم إرسال بيانات.)`;
+
+      // show modal
+      backdrop.style.display = 'flex';
+      backdrop.setAttribute('aria-hidden','false');
+
+      // update success box after short delay to simulate processing
+      successBox.style.display = 'none';
+      setTimeout(() => {
+        successBox.textContent = '✅ تم تنفيذ المحاكاة — الباقة ستُضاف (تجريبي).';
+        successBox.style.display = 'block';
+      }, 900);
+    });
+
+    closeModal.addEventListener('click', () => {
+      backdrop.style.display = 'none';
+      backdrop.setAttribute('aria-hidden','true');
+    });
+
+    // Allow Esc to close modal
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        backdrop.style.display = 'none';
+        backdrop.setAttribute('aria-hidden','true');
+      }
+    });
+
+    // Prevent accidental form submission
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+    });
+  </script>
+</body>
+</html>
